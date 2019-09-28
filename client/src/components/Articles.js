@@ -20,7 +20,14 @@ export class Articles extends Component {
       });
     });
   };
-
+  deleteHandler = id => {
+    axios.delete(`http://localhost:9000/api/aritcles/${id}`).then(data => {
+      this.setState({
+        ...this.state,
+        articles: this.state.articles.filter(article => article._id != id)
+      });
+    });
+  };
   render() {
     const postView = this.state.articles.map(article => (
       <div>
@@ -33,7 +40,7 @@ export class Articles extends Component {
         <AddArticle submitHandler={this.submitHandler} />
 
         {this.state.articles.map(article => (
-          <Article article={article} />
+          <Article deleteHandler={this.deleteHandler} article={article} />
         ))}
       </div>
     );
