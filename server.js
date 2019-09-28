@@ -28,6 +28,7 @@ app.use("/api/aritcles", articles);
 app.get("/", (req, res) => {
   res.send("hello World");
 });
+//port
 const port = process.env.port || 9000;
 app.listen(port, () => {
   console.log("server is starting at port " + port);
